@@ -65,12 +65,12 @@ int* Calc::checkRows(int**& board)
 			allRowCheck++;
 			if (allRowCheck == 9)
 			{
-				cout<<"all rows are gung ho captain"<<endl;
+				cout<<"all rows are correct"<<endl;
 			}
 		}
 		else
 		{
-			cout<<"row "<<i + 1<<" is not loving life right now"<<endl;
+			cout<<"row "<<i + 1<<" has an error"<<endl;
 		}
 	}
 
@@ -124,12 +124,12 @@ int* Calc::checkColumns(int**& board)
 			allColumnCheck++;
 			if (allColumnCheck == 9)
 			{
-				cout<<"all columns are gung ho captain"<<endl;
+				cout<<"all columns are correct"<<endl;
 			}
 		}
 		else
 		{
-			cout<<"column "<<i + 1<<" is not loving life right now"<<endl;
+			cout<<"column "<<i + 1<<" has an error"<<endl;
 		}
 	}
 
@@ -194,12 +194,12 @@ int* Calc::checkGrids(int**& board)
 			allGridCheck++;
 			if (allGridCheck == 9)
 			{
-				cout<<"all grids are gung ho captain"<<endl;
+				cout<<"all grids are correct"<<endl;
 			}
 		}
 		else
 		{
-			cout<<"grid "<<i + 1<<" is not loving life right now"<<endl;
+			cout<<"grid "<<i + 1<<" has an error"<<endl;
 		}
 	}
 

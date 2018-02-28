@@ -85,10 +85,131 @@ int main()
 
 	cout<<'\n';
 
-	Calc calc;
-	int* validRows = calc.checkRows(board);
-	int* validColumns = calc.checkColumns(board);
-	int* validGrids = calc.checkGrids(board);
+	bool solved = false;
+	int cycle = 1;
+
+	while (!solved)
+	{
+
+		cout<<"Cycle:"<<cycle<<'\n'<<'\n';
+		cycle++;
+		//find all the invalid rows and columns and grids
+		Calc calc;
+		int* validRows = calc.checkRows(board);
+		int* validColumns = calc.checkColumns(board);
+		int* validGrids = calc.checkGrids(board);
+		cout<<endl;
+
+		int wrongRowAmount = 0, wrongColumnAmount = 0;
+		for (int i = 0; i < 9; ++i)
+		{
+			if (validRows[i] == 0)
+			{
+				wrongRowAmount++;
+			}
+			if (validColumns[i] == 0)
+			{
+				wrongColumnAmount++;
+			}
+		}
+
+		if (wrongRowAmount == 0 && wrongColumnAmount == 0)
+		{
+			solved = true;
+		}
+		else
+		{
+
+
+			int goal[] = {1,2,3,4,5,6,7,8,9};
+			int currRow, currColumn;
+			int missingnumber;
+
+			for (int i = 0; i < 9; ++i)
+			{
+				if (validRows[i] == 0)
+				{
+					currRow = i;
+				}
+				if (validColumns[i] == 0)
+				{
+					currColumn = i;
+				}
+			}
+
+			int tempCurrRow[9];
+
+			for (int column = 0; column < 9; ++column)
+			{
+				tempCurrRow[column] = board[currRow][column];
+			}
+
+			sort(tempCurrRow, tempCurrRow+9);
+
+			for (int i = 0; i < 9; ++i)
+			{
+				if (goal[i] != tempCurrRow[i])
+				{
+					missingnumber = i+1;
+				}
+			}
+
+			cout<<"Replacing "<<board[currRow][currColumn]<<" with "<<missingnumber<<" at row "<<currRow+1<<" column "<<currColumn+1<<'\n'<<endl;
+
+			board[currRow][currColumn] = missingnumber;
+
+			cout<<"Current Working Board: "<<endl;
+
+			for(int row = 0; row < 9; ++row)
+			{
+				for(int column = 0; column < 9; ++column)
+				{
+					if (column != 2 && column != 5)
+					{
+						cout<<board[row][column]<<" ";
+					}
+					else
+					{
+						cout<<board[row][column]<<"  ";
+					}
+				}
+				if (row != 2 && row != 5)
+				{
+					cout<<'\n';
+				}
+				else
+				{
+					cout<<'\n'<<'\n';
+				}
+			}
+		}
+	}
+
+	cout<<"Solved Board: "<<endl;
+	for(int row = 0; row < 9; ++row)
+	{
+		for(int column = 0; column < 9; ++column)
+		{
+			if (column != 2 && column != 5)
+			{
+				cout<<board[row][column]<<" ";
+			}
+			else
+			{
+				cout<<board[row][column]<<"  ";
+			}
+		}
+		if (row != 2 && row != 5)
+		{
+			cout<<'\n';
+		}
+		else
+		{
+			cout<<'\n'<<'\n';
+		}
+	}
+
+
 
 	fileIn.close();
 
