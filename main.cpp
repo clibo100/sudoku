@@ -27,14 +27,35 @@ int main()
 		board[i] = new int[9];
 	}
 
+	//initialize 2D array of actual input so i can deal with commas
+	char** inputboard = new char*[18];
+	for(int i = 0; i < 9; ++i)
+	{
+		inputboard[i] = new char[18];
+	}
+
 	//read map from file and assign to 2D array
 	for(int row = 0; row < 9; ++row)
 	{
-		for(int column = 0; column < 9; ++column)
+		for(int column = 0; column < 18; ++column)
 		{
 			fileIn >> text;
-			board[row][column] = text - '0';
+			inputboard[row][column] = text;
 		}
+	}
+
+	//deal with commas by assigning actual sudoku array to every other input array
+	for (int row = 0; row < 9; ++row)
+	{
+		board[row][0] = inputboard[row][0] - '0';
+		board[row][1] = inputboard[row][2] - '0';
+		board[row][2] = inputboard[row][4] - '0';
+		board[row][3] = inputboard[row][6] - '0';
+		board[row][4] = inputboard[row][8] - '0';
+		board[row][5] = inputboard[row][10] - '0';
+		board[row][6] = inputboard[row][12] - '0';
+		board[row][7] = inputboard[row][14] - '0';
+		board[row][8] = inputboard[row][16] - '0';
 	}
 
 	//print out board
